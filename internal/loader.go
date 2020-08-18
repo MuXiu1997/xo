@@ -476,6 +476,7 @@ func (tl TypeLoader) LoadRelkind(args *ArgType, relType RelType) (map[string]*Ty
 			RelType: relType,
 			Fields:  []*Field{},
 			Table:   ti,
+			Comment: ti.Comment,
 		}
 
 		// process columns
@@ -530,8 +531,9 @@ func (tl TypeLoader) LoadColumns(args *ArgType, typeTpl *Type) error {
 
 		// set col info
 		f := &Field{
-			Name: snaker.SnakeToCamelIdentifier(c.ColumnName),
-			Col:  c,
+			Name:    snaker.SnakeToCamelIdentifier(c.ColumnName),
+			Col:     c,
+			Comment: c.Comment,
 		}
 		f.Len, f.NilType, f.Type = tl.ParseType(args, c.DataType, !c.NotNull)
 

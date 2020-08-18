@@ -271,6 +271,7 @@ func MyTables(db models.XODB, schema string, relkind string) ([]*models.Table, e
 			TableName: row.TableName,
 			Type:      row.Type,
 			ManualPk:  manualPk,
+			Comment:   row.Comment,
 		})
 	}
 
